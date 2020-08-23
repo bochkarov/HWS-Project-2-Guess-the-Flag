@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(showScoreTapped))
+        
         button1.layer.borderWidth = 1
         button2.layer.borderWidth = 1
         button3.layer.borderWidth = 1
@@ -59,9 +61,6 @@ class ViewController: UIViewController {
 
             score -= 1
         }
-        
-        
-        
         if qtrack == 10 {
             let resetAC = UIAlertController(title: "Thats all!", message: "Your score is \(score)", preferredStyle: .alert)
             resetAC.addAction(UIAlertAction(title: "Start again", style: .default, handler: { (reset) in
@@ -70,16 +69,19 @@ class ViewController: UIViewController {
                 self.askQuestion(action: nil)
             }))
             present(resetAC, animated: true)
-
+            
         } else {
             let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
             
             present(ac, animated: true)
         }
-        
-        
     }
-    
+    @objc func showScoreTapped() {
+        let scoreAC = UIAlertController(title: "SCORE", message: "Your score is \(score).", preferredStyle: .alert)
+           scoreAC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+           
+           present(scoreAC, animated: true)
+    }
 }
 
